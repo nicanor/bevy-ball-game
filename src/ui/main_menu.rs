@@ -13,13 +13,13 @@ impl Plugin for MainMenuPlugin {
 }
 
 #[derive(Component)]
-pub struct MainMenu;
+struct MainMenu;
 
 #[derive(Component)]
-pub struct PlayButton;
+struct PlayButton;
 
 #[derive(Component)]
-pub struct QuitButton;
+struct QuitButton;
 
 fn spawn_main_menu(mut commands: Commands, asset_server: Res<AssetServer>) {
     commands.spawn((

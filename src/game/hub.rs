@@ -14,10 +14,10 @@ impl Plugin for HubPlugin {
 }
 
 #[derive(Component)]
-pub struct Hub;
+struct Hub;
 
 #[derive(Component)]
-pub struct ScoreDisplay;
+struct ScoreDisplay;
 
 fn spawn_hub(mut commands: Commands, asset_server: Res<AssetServer>) {
     commands.spawn((

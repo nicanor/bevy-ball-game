@@ -27,16 +27,16 @@ impl Plugin for PauseMenuPlugin {
 }
 
 #[derive(Component)]
-pub struct PauseMenu;
+struct PauseMenu;
 
 #[derive(Component)]
-pub struct ResumeButton;
+struct ResumeButton;
 
 #[derive(Component)]
-pub struct MainMenuButton;
+struct MainMenuButton;
 
 #[derive(Component)]
-pub struct QuitButton;
+struct QuitButton;
 
 fn spawn_pause_menu(mut commands: Commands, asset_server: Res<AssetServer>) {
     commands.spawn((

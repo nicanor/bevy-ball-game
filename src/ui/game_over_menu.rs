@@ -21,16 +21,16 @@ impl Plugin for GameOverMenuPlugin {
 }
 
 #[derive(Component)]
-pub struct GameOverMenu;
+struct GameOverMenu;
 
 #[derive(Component)]
-pub struct RestartButton;
+struct RestartButton;
 
 #[derive(Component)]
-pub struct MainMenuButton;
+struct MainMenuButton;
 
 #[derive(Component)]
-pub struct QuitButton;
+struct QuitButton;
 
 fn spawn_game_over_menu(mut commands: Commands, asset_server: Res<AssetServer>, score: Res<Score>) {
     commands.spawn((

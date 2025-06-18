@@ -41,7 +41,7 @@ pub struct QuitButton;
 fn spawn_pause_menu(mut commands: Commands, asset_server: Res<AssetServer>) {
     commands.spawn((
         container_node(),
-        PauseMenu {},
+        PauseMenu,
         children![
             text_bundle(&asset_server, "Paused", 48.0),
             button_bundle(&asset_server, "Main Menu", MainMenuButton),

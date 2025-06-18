@@ -26,7 +26,7 @@ impl Plugin for StarPlugin {
 }
 
 #[derive(Component)]
-struct Star {}
+struct Star;
 
 #[derive(Resource)]
 struct StarSpawnTimer {
@@ -57,7 +57,7 @@ fn spawn_star(
         Mesh2d(meshes.add(RegularPolygon::new(STAR_SIZE / 2.0, 5)).into()),
         MeshMaterial2d(materials.add(Color::srgb_u8(190, 243, 84))),
         Transform::from_xyz(x, y, 0.0),
-        Star {},
+        Star,
     ));
 }
 

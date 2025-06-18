@@ -17,7 +17,7 @@ impl Plugin for PlayerPlugin {
 }
 
 #[derive(Component)]
-pub struct Player {}
+pub struct Player;
 
 fn spawn_player(
     mut commands: Commands,
@@ -30,7 +30,7 @@ fn spawn_player(
         Mesh2d(meshes.add(Circle::new(PLAYER_SIZE / 2.0)).into()),
         MeshMaterial2d(materials.add(Color::srgb_u8(106, 210, 210))),
         Transform::from_xyz(window.width() / 2.0, window.height() / 2.0, 0.0),
-        Player {},
+        Player,
     ));
 }
 

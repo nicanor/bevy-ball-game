@@ -46,7 +46,7 @@ pub fn hub_node() -> Node {
     }
 }
 
-pub fn box_bundle() -> Node {
+pub fn box_node() -> Node {
     Node {
         width: Val::Px(200.0),
         height: Val::Px(100.0),
@@ -71,59 +71,34 @@ pub fn container_node() -> Node {
     }
 }
 
-pub fn spawn_title(spawner: &mut ChildSpawnerCommands<'_>, asset_server: &Res<AssetServer>) {
-    spawner
-        .spawn(Node {
+pub fn title_bundle(asset_server: &Res<AssetServer>) -> impl Bundle {
+    (
+        Node {
             width: Val::Px(600.0),
             height: Val::Px(120.0),
             flex_direction: FlexDirection::Row,
             justify_content: JustifyContent::Center,
             align_items: AlignItems::Center,
             ..default()
-        })
-        .with_children(|parent| {
-            spawn_text(parent, asset_server, "Bevy Ball Game", 64.0);
-        });
+        },
+        children![text_bundle(asset_server, "Bevy Ball Game", 64.0)],
+    )
 }
 
-pub fn spawn_button(
-    spawner: &mut ChildSpawnerCommands<'_>,
-    asset_server: &Res<AssetServer>,
-    text: &str,
-    button: impl Component,
-) {
-    spawner
-        .spawn((
-            Button,
-            Node {
-                width: Val::Px(200.0),
-                height: Val::Px(80.0),
-                justify_content: JustifyContent::Center,
-                align_items: AlignItems::Center,
-                ..default()
-            },
-            BackgroundColor(BUTTON_COLOR.into()),
-            button,
-        ))
-        .with_children(|parent| {
-            spawn_text(parent, asset_server, text, 32.0);
-        });
-}
-
-pub fn spawn_text(spawner: &mut ChildSpawnerCommands<'_>, asset_server: &Res<AssetServer>, text: &str, font_size: f32) {
-    spawner.spawn((
-        Text::new(text),
-        TextLayout {
-            justify: JustifyText::Center,
+pub fn button_bundle(asset_server: &Res<AssetServer>, text: &str, button: impl Component) -> impl Bundle {
+    (
+        Button,
+        Node {
+            width: Val::Px(200.0),
+            height: Val::Px(80.0),
+            justify_content: JustifyContent::Center,
+            align_items: AlignItems::Center,
             ..default()
         },
-        TextColor(Color::WHITE),
-        TextFont {
-            font: asset_server.load("fonts/FiraSans-Bold.ttf"),
-            font_size: font_size,
-            ..default()
-        },
-    ));
+        BackgroundColor(BUTTON_COLOR.into()),
+        button,
+        children![text_bundle(asset_server, text, 32.0)],
+    )
 }
 
 pub fn text_bundle(asset_server: &Res<AssetServer>, text: &str, font_size: f32) -> impl Bundle {

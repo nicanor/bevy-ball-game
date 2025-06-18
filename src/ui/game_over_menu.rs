@@ -1,4 +1,4 @@
-use super::{container_node, spawn_button, spawn_text};
+use super::{button_bundle, container_node, text_bundle};
 use crate::app_state::AppState;
 use crate::game::Score;
 use bevy::prelude::*;
@@ -33,15 +33,17 @@ pub struct MainMenuButton;
 pub struct QuitButton;
 
 fn spawn_game_over_menu(mut commands: Commands, asset_server: Res<AssetServer>, score: Res<Score>) {
-    commands
-        .spawn((container_node(), GameOverMenu {}))
-        .with_children(|parent| {
-            spawn_text(parent, &asset_server, "Game Over", 48.0);
-            spawn_text(parent, &asset_server, &format!("Score: {}", score.value), 24.0);
-            spawn_button(parent, &asset_server, "Main Menu", MainMenuButton {});
-            spawn_button(parent, &asset_server, "Restart", RestartButton {});
-            spawn_button(parent, &asset_server, "Quit", QuitButton {});
-        });
+    commands.spawn((
+        container_node(),
+        GameOverMenu {},
+        children![
+            text_bundle(&asset_server, "Game Over", 48.0),
+            text_bundle(&asset_server, &format!("Score: {}", score.value), 24.0),
+            button_bundle(&asset_server, "Main Menu", MainMenuButton {}),
+            button_bundle(&asset_server, "Restart", RestartButton {}),
+            button_bundle(&asset_server, "Quit", QuitButton {}),
+        ],
+    ));
 }
 
 fn despawn_game_over_menu(mut commands: Commands, query: Query<Entity, With<GameOverMenu>>) {

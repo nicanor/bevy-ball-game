@@ -1,4 +1,4 @@
-use super::{container_node, spawn_button, spawn_title};
+use super::{button_bundle, container_node, title_bundle};
 use crate::app_state::AppState;
 use bevy::prelude::*;
 
@@ -22,11 +22,15 @@ pub struct PlayButton;
 pub struct QuitButton;
 
 fn spawn_main_menu(mut commands: Commands, asset_server: Res<AssetServer>) {
-    commands.spawn((container_node(), MainMenu {})).with_children(|parent| {
-        spawn_title(parent, &asset_server);
-        spawn_button(parent, &asset_server, "Play", PlayButton {});
-        spawn_button(parent, &asset_server, "Quit", QuitButton {});
-    });
+    commands.spawn((
+        container_node(),
+        MainMenu,
+        children![
+            title_bundle(&asset_server),
+            button_bundle(&asset_server, "Play", PlayButton),
+            button_bundle(&asset_server, "Quit", QuitButton),
+        ],
+    ));
 }
 
 fn despawn_main_menu(mut commands: Commands, main_menu_query: Query<Entity, With<MainMenu>>) {

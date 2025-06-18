@@ -1,7 +1,7 @@
 use super::state::GameState;
 use super::state::paused;
 use crate::app_state::AppState;
-use crate::ui::{container_node, spawn_button, spawn_text};
+use crate::ui::{button_bundle, container_node, text_bundle};
 use bevy::prelude::*;
 
 pub struct PauseMenuPlugin;
@@ -39,14 +39,16 @@ pub struct MainMenuButton;
 pub struct QuitButton;
 
 fn spawn_pause_menu(mut commands: Commands, asset_server: Res<AssetServer>) {
-    commands
-        .spawn((container_node(), PauseMenu {}))
-        .with_children(|parent| {
-            spawn_text(parent, &asset_server, "Paused", 48.0);
-            spawn_button(parent, &asset_server, "Main Menu", MainMenuButton {});
-            spawn_button(parent, &asset_server, "Resume", ResumeButton {});
-            spawn_button(parent, &asset_server, "Quit", QuitButton {});
-        });
+    commands.spawn((
+        container_node(),
+        PauseMenu {},
+        children![
+            text_bundle(&asset_server, "Paused", 48.0),
+            button_bundle(&asset_server, "Main Menu", MainMenuButton),
+            button_bundle(&asset_server, "Resume", ResumeButton),
+            button_bundle(&asset_server, "Quit", QuitButton),
+        ],
+    ));
 }
 
 fn despawn_pause_menu(mut commands: Commands, query: Query<Entity, With<PauseMenu>>) {

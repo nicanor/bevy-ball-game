@@ -1,6 +1,6 @@
 use super::stars::CollectStarEvent;
 use crate::app_state::AppState;
-use crate::ui::{box_bundle, hub_node, text_bundle};
+use crate::ui::{box_node, hub_node, text_bundle};
 use bevy::prelude::*;
 
 pub struct HubPlugin;
@@ -20,12 +20,17 @@ pub struct Hub;
 pub struct ScoreDisplay;
 
 fn spawn_hub(mut commands: Commands, asset_server: Res<AssetServer>) {
-    commands.spawn((hub_node(), Hub {})).with_children(|parent| {
-        parent.spawn(box_bundle()).with_children(|parent| {
-            parent.spawn(text_bundle(&asset_server, "Score: ", 48.0));
-            parent.spawn((ScoreDisplay {}, text_bundle(&asset_server, "0", 48.0)));
-        });
-    });
+    commands.spawn((
+        Hub,
+        hub_node(),
+        children![(
+            box_node(),
+            children![
+                text_bundle(&asset_server, "Score: ", 48.0),
+                (ScoreDisplay, text_bundle(&asset_server, "0", 48.0))
+            ]
+        )],
+    ));
 }
 
 fn despawn_hub(mut commands: Commands, query: Query<Entity, With<Hub>>) {

@@ -1,3 +1,11 @@
+mod enemies;
+mod hub;
+mod pause_menu;
+mod player;
+mod score;
+mod stars;
+mod state;
+
 use bevy::prelude::*;
 use enemies::EnemyPlugin;
 use hub::HubPlugin;
@@ -8,13 +16,6 @@ use score::ScorePlugin;
 use stars::StarPlugin;
 use state::GameStatePlugin;
 
-mod enemies;
-mod hub;
-mod pause_menu;
-mod player;
-mod score;
-mod stars;
-mod state;
 pub struct GamePlugin;
 
 impl Plugin for GamePlugin {

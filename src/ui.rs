@@ -1,9 +1,9 @@
+mod game_over_menu;
+mod main_menu;
+
 use bevy::prelude::*;
 use game_over_menu::GameOverMenuPlugin;
 use main_menu::MainMenuPlugin;
-
-mod game_over_menu;
-mod main_menu;
 
 const BUTTON_COLOR: Srgba = Srgba::new(0.15, 0.15, 0.15, 1.0);
 const HOVERED_BUTTON_COLOR: Srgba = Srgba::new(0.25, 0.25, 0.25, 1.0);

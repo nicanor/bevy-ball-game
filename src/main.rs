@@ -1,13 +1,13 @@
+mod app_state;
+mod game;
+mod setup;
+mod ui;
+
 use app_state::AppStatePlugin;
 use bevy::prelude::*;
 use game::GamePlugin;
 use setup::SetupPlugin;
 use ui::UIPlugin;
-
-mod app_state;
-mod game;
-mod setup;
-mod ui;
 
 fn main() {
     App::new()

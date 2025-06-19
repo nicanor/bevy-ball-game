@@ -12,11 +12,11 @@ impl Plugin for GameStatePlugin {
 }
 
 pub fn running(game_state: Res<State<GameState>>, app_state: Res<State<AppState>>) -> bool {
-    return (game_state.eq(&GameState::Running)) && (app_state.eq(&AppState::Game));
+    game_state.eq(&GameState::Running) && app_state.eq(&AppState::Game)
 }
 
 pub fn paused(game_state: Res<State<GameState>>, app_state: Res<State<AppState>>) -> bool {
-    return (game_state.eq(&GameState::Paused)) && (app_state.eq(&AppState::Game));
+    game_state.eq(&GameState::Paused) && app_state.eq(&AppState::Game)
 }
 
 #[derive(States, Debug, Clone, Copy, Eq, PartialEq, Hash, Default)]

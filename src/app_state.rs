@@ -23,7 +23,7 @@ pub enum AppState {
 }
 
 #[derive(Event)]
-pub struct GameOver {}
+pub struct GameOver;
 
 fn transition_to_game_state(
     keyboard_input: Res<ButtonInput<KeyCode>>,

@@ -163,7 +163,7 @@ fn enemy_hit_player(
                 ));
 
                 commands.entity(player_entity).despawn();
-                game_over_event_writer.write(GameOver {});
+                game_over_event_writer.write(GameOver);
             }
         }
     }

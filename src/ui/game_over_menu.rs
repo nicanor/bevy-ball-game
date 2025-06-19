@@ -34,14 +34,14 @@ struct QuitButton;
 
 fn spawn_game_over_menu(mut commands: Commands, asset_server: Res<AssetServer>, score: Res<Score>) {
     commands.spawn((
-        container_node(),
         GameOverMenu,
+        container_node(),
         children![
             text_bundle(&asset_server, "Game Over", 48.0),
             text_bundle(&asset_server, &format!("Score: {}", score.value), 24.0),
-            button_bundle(&asset_server, "Main Menu", MainMenuButton {}),
-            button_bundle(&asset_server, "Restart", RestartButton {}),
-            button_bundle(&asset_server, "Quit", QuitButton {}),
+            button_bundle(&asset_server, "Main Menu", MainMenuButton),
+            button_bundle(&asset_server, "Restart", RestartButton),
+            button_bundle(&asset_server, "Quit", QuitButton),
         ],
     ));
 }

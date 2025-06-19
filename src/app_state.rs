@@ -31,7 +31,7 @@ fn transition_to_game_state(
     mut next_state: ResMut<NextState<AppState>>,
 ) {
     if keyboard_input.just_pressed(KeyCode::KeyG) {
-        if state.get().clone() != AppState::Game {
+        if !state.eq(&AppState::Game) {
             next_state.set(AppState::Game);
         }
     }
@@ -43,7 +43,7 @@ fn transition_to_main_menu_state(
     mut next_state: ResMut<NextState<AppState>>,
 ) {
     if keyboard_input.just_pressed(KeyCode::KeyM) {
-        if state.get().clone() != AppState::MainMenu {
+        if !state.eq(&AppState::MainMenu) {
             next_state.set(AppState::MainMenu);
         }
     }

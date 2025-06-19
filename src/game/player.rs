@@ -62,7 +62,11 @@ fn player_movement(
             (true, false, false, true) => direction += Vec3::new(-0.7142, 0.7142, 0.0),
             (false, true, true, false) => direction += Vec3::new(0.7142, -0.7142, 0.0),
             (false, false, true, true) => direction += Vec3::new(0.7142, 0.7142, 0.0),
-            _ => {}
+            (true, true, false, true) => direction += Vec3::new(-1.0, 0.0, 0.0),
+            (true, true, true, false) => direction += Vec3::new(0.0, -1.0, 0.0),
+            (false, true, true, true) => direction += Vec3::new(1.0, 0.0, 0.0),
+            (true, false, true, true) => direction += Vec3::new(0.0, 1.0, 0.0),
+            _ => direction = Vec3::ZERO,
         }
 
         if direction.length() > 0.0 {
